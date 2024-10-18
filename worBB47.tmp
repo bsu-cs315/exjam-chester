@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://b58decajkudgd"]
+
+[ext_resource type="PackedScene" uid="uid://bh5ue2yqwa73r" path="res://the_raccoon.tscn" id="1_b3rgg"]
+[ext_resource type="Script" path="res://the_raccoon.gd" id="2_tdwqw"]
+
+[node name="world" type="Node3D"]
+
+[node name="TheRaccoon" parent="." instance=ExtResource("1_b3rgg")]
+script = ExtResource("2_tdwqw")
+speed = null
+rotation_speed = null
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, -8.11753e-05, -8.22102e-05, 8.11122e-05, 1, -0.000759208, 8.22724e-05, 0.000759201, 1, -1.88526, -0.276611, 4.13448)
+use_collision = true
+size = Vector3(78.3401, 0.446777, 68.633)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-2.4166e-08, 0.833278, -0.552854, 3.64238e-08, 0.552854, 0.833278, 1, -1.77636e-15, -4.37114e-08, -6, 9.10041, 0)

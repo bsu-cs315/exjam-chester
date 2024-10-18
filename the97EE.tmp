@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://bh5ue2yqwa73r"]
+
+[ext_resource type="Script" path="res://the_raccoon.gd" id="1_ocrm8"]
+[ext_resource type="PackedScene" uid="uid://6lkyf86uydqo" path="res://raccoon.fbx" id="1_ofwmo"]
+[ext_resource type="PackedScene" uid="uid://d2xfia1rdpnm4" path="res://biggun.tscn" id="2_pathb"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ysvjw"]
+size = Vector3(5.5127, 2.67151, 1.66498)
+
+[node name="CharacterBody3D" type="CharacterBody3D"]
+script = ExtResource("1_ocrm8")
+
+[node name="raccoon" parent="." instance=ExtResource("1_ofwmo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.03654, 0, 0)
+
+[node name="biggun" parent="." instance=ExtResource("2_pathb")]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, -0.00643337, 2.36141, 0.00490928)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, -0.000311059, 0.000152799, 0.000311035, 1, 0.000235291, -0.000152849, -0.000235259, 1, -0.263753, 1.36066, 0.00827026)
+shape = SubResource("BoxShape3D_ysvjw")

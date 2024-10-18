@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://dh21gwlk0c23y"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_3ewk3"]
+direction = Vector3(0, 0, 0)
+initial_velocity_min = 0.5
+initial_velocity_max = 2.0
+gravity = Vector3(0, 0, 0)
+
+[sub_resource type="Gradient" id="Gradient_ctseu"]
+colors = PackedColorArray(0.917825, 0.282805, 0, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_2335w"]
+gradient = SubResource("Gradient_ctseu")
+fill = 2
+fill_from = Vector2(0.483146, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0froh"]
+transparency = 1
+albedo_texture = SubResource("GradientTexture2D_2335w")
+emission_enabled = true
+emission = Color(0.719454, 2.55093e-06, 5.77569e-07, 1)
+emission_energy_multiplier = 59.25
+emission_texture = SubResource("GradientTexture2D_2335w")
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_ly5m5"]
+material = SubResource("StandardMaterial3D_0froh")
+size = Vector2(0.5, 0.5)
+
+[node name="muzzle_flash" type="GPUParticles3D"]
+emitting = false
+amount = 30
+lifetime = 0.05
+one_shot = true
+explosiveness = 0.99
+process_material = SubResource("ParticleProcessMaterial_3ewk3")
+draw_pass_1 = SubResource("QuadMesh_ly5m5")

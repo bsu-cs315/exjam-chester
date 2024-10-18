@@ -1,0 +1,134 @@
+[gd_scene load_steps=8 format=3 uid="uid://b58decajkudgd"]
+
+[ext_resource type="PackedScene" uid="uid://bh5ue2yqwa73r" path="res://raccoon/the_raccoon.tscn" id="1_b3rgg"]
+[ext_resource type="Script" path="res://world.gd" id="1_ctax3"]
+[ext_resource type="Script" path="res://raccoon/camera_3d.gd" id="2_awy5s"]
+[ext_resource type="PackedScene" uid="uid://crcbwb4irtbkr" path="res://trash_can/enemy.tscn" id="3_mhyp3"]
+[ext_resource type="AudioStream" uid="uid://darw0qxmua8yn" path="res://raccoon/Fire.wav" id="4_ibyvj"]
+[ext_resource type="AudioStream" uid="uid://da4m4ixbigm3k" path="res://raccoon/raccoon_music.wav" id="5_g145i"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x2ntl"]
+albedo_color = Color(0.151276, 0.151276, 0.151276, 1)
+
+[node name="world" type="Node3D"]
+script = ExtResource("1_ctax3")
+
+[node name="the_raccoon" parent="." groups=["raccoons"] instance=ExtResource("1_b3rgg")]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, -8.11753e-05, -8.22102e-05, 8.11122e-05, 1, -0.000759208, 8.22724e-05, 0.000759201, 1, -5.91693, -0.279981, 8.14202)
+use_collision = true
+size = Vector3(128.171, 0.446777, 114.459)
+material = SubResource("StandardMaterial3D_x2ntl")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="."]
+transform = Transform3D(1, -8.11753e-05, -8.22102e-05, 8.11122e-05, 1, -0.000759208, 8.22724e-05, 0.000759201, 1, -5.91261, 3.68649, -48.2205)
+use_collision = true
+size = Vector3(128.171, 8.29413, 1.72803)
+material = SubResource("StandardMaterial3D_x2ntl")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="."]
+transform = Transform3D(1, -8.11753e-05, -8.22102e-05, 8.11122e-05, 1, -0.000759208, 8.22724e-05, 0.000759201, 1, -5.91261, 3.68649, 60.7795)
+use_collision = true
+size = Vector3(128.171, 8.29413, 1.72803)
+material = SubResource("StandardMaterial3D_x2ntl")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, -8.11753e-05, -8.22102e-05, 8.11122e-05, 1, -0.000759208, 8.22724e-05, 0.000759201, 1, 57.1672, 3.67014, 8.15021)
+use_collision = true
+size = Vector3(2.00201, 8.33679, 114.459)
+material = SubResource("StandardMaterial3D_x2ntl")
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="."]
+transform = Transform3D(1, -8.11753e-05, -8.22102e-05, 8.11122e-05, 1, -0.000759208, 8.22724e-05, 0.000759201, 1, -69.0034, 3.67014, 8.15021)
+use_collision = true
+size = Vector3(2.00201, 8.33679, 114.459)
+material = SubResource("StandardMaterial3D_x2ntl")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-2.38057e-08, 0.83869, -0.54461, 3.66603e-08, 0.54461, 0.83869, 1, 0, -4.37114e-08, -5.1063, 10.7683, -0.12889)
+script = ExtResource("2_awy5s")
+
+[node name="win_lose" type="Label3D" parent="Camera3D"]
+unique_name_in_owner = true
+transform = Transform3D(1, -1.1213e-10, -1.27898e-13, 1.12134e-10, 0.999997, 0.00256541, -1.49214e-13, -0.00256541, 0.999997, -0.0364675, 0.309892, -1.43989)
+
+[node name="trash_cans" type="Label3D" parent="Camera3D"]
+unique_name_in_owner = true
+transform = Transform3D(1, -1.12121e-10, -1.27898e-13, 1.12129e-10, 0.999997, 0.00256541, -1.66978e-13, -0.00256541, 0.999997, -1.29264, 0.927251, -1.30457)
+text = "Trash Cans Remaining: "
+font_size = 16
+
+[node name="controls" type="Label3D" parent="Camera3D"]
+unique_name_in_owner = true
+transform = Transform3D(1, -1.12107e-10, -1.27898e-13, 1.12129e-10, 0.999997, 0.00256541, -1.66978e-13, -0.00256541, 0.999997, -1.6871, -0.8649, -1.53976)
+text = "Controls:
+Move (WASD)
+Shoot (L Click)"
+font_size = 16
+
+[node name="shoot_audio" type="AudioStreamPlayer3D" parent="Camera3D"]
+unique_name_in_owner = true
+stream = ExtResource("4_ibyvj")
+
+[node name="background_music" type="AudioStreamPlayer3D" parent="Camera3D"]
+stream = ExtResource("5_g145i")
+max_db = -5.42
+autoplay = true
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.258819, 0.965926, 0, -0.965926, 0.258819, 0, 5.676, 0)
+
+[node name="enemy" parent="." instance=ExtResource("3_mhyp3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -59.1709, 0.214847, -23.3046)
+
+[node name="enemy2" parent="." instance=ExtResource("3_mhyp3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.738, 0.444093, -35.5016)
+
+[node name="enemy3" parent="." instance=ExtResource("3_mhyp3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.3507, 0, 50.6123)
+
+[node name="enemy4" parent="." instance=ExtResource("3_mhyp3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.673, 0, 48.503)
+
+[node name="enemy5" parent="." instance=ExtResource("3_mhyp3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42.4729, -5.72205e-06, -41.1632)
+
+[node name="enemy6" parent="." instance=ExtResource("3_mhyp3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46.9295, 0, -3.12766)
+
+[node name="enemy7" parent="." instance=ExtResource("3_mhyp3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -55.0429, 0, 13.3496)
+
+[node name="enemy8" parent="." instance=ExtResource("3_mhyp3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28, 0, -7)
+
+[node name="enemy9" parent="." instance=ExtResource("3_mhyp3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.2569, 1.90735e-06, 31.5016)
+
+[node name="enemy10" parent="." instance=ExtResource("3_mhyp3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.7559, 0, 32.0755)
+
+[node name="enemy11" parent="." instance=ExtResource("3_mhyp3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.491142, 0, 54.0208)
+
+[node name="enemy12" parent="." instance=ExtResource("3_mhyp3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43, 0, 43)
+
+[node name="enemy13" parent="." instance=ExtResource("3_mhyp3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42.8707, 0, 13.5501)
+
+[node name="enemy14" parent="." instance=ExtResource("3_mhyp3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 0, -19)
+
+[node name="enemy15" parent="." instance=ExtResource("3_mhyp3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.91019, 0, -33.3337)
+
+[node name="enemy16" parent="." instance=ExtResource("3_mhyp3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -51, 0, -18)
+
+[node name="enemy17" parent="." instance=ExtResource("3_mhyp3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39, 0, -31)
+
+[node name="enemy18" parent="." instance=ExtResource("3_mhyp3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.4772, 0, -35.2324)
